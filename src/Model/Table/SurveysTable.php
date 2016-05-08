@@ -34,6 +34,12 @@ class SurveysTable extends Table
             'targetForeignKey' => 'customer_id',
             'joinTable' => 'customers_surveys'
         ]);
+
+        $this->hasMany('SurveysQuestions', [
+            'foreignKey' => 'surveys_id',
+            'joinType' => 'LEFT',
+            'propertyName' => 'SurveysQuestions'
+        ]);
     }
 
     /**

@@ -5,6 +5,8 @@
         <li><?= $this->Form->postLink(__('Delete Customer'), ['action' => 'delete', $customer->id], ['confirm' => __('Are you sure you want to delete # {0}?', $customer->id)]) ?> </li>
         <li><?= $this->Html->link(__('List Customers'), ['action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('New Customer'), ['action' => 'add']) ?> </li>
+        <li><?= $this->Html->link(__('List CustomerSurveys'), ['action' => 'surveys', $customer->id]) ?> </li>
+
     </ul>
 </nav>
 <div class="customers view large-9 medium-8 columns content">
@@ -68,13 +70,6 @@
         </tr>
     </table>
 </div>
-<?php
-
-if($customersSurveys->first()){
-   include('customer_surveys.ctp');
-}
-?>
-
 
 <?php
 if($customersTickets->first()){

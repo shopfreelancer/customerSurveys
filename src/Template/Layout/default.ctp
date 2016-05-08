@@ -50,7 +50,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
         <h3 class="text-muted">Testapp</h3>
     </div>
     <div class="container">
-        <h1><a href=""><?= $this->fetch('title') ?></a></h1>
+        <h1><?= $this->fetch('title') ?></h1>
     </div>
 
 

@@ -46,7 +46,8 @@ class CustomersSeed extends AbstractSeed
                 'street'        => $faker->streetName." ".$faker->streetAddress,
                 'email'         => $faker->email,
                 'www'           => $faker->domainName,
-                'phone'         => $faker->phoneNumber
+                'phone'         => $faker->phoneNumber,
+                'country_id'    => $faker->numberBetween(1,3)
 
             ];
         }

@@ -14,7 +14,7 @@ class CreateCustomersSurveys extends AbstractMigration
     {
         $table = $this->table('customers_surveys');
 
-        $table->addColumn('timestamp', 'text', [
+        $table->addColumn('timestamp', 'date', [
             'default' => null,
             'null' => false,
         ]);

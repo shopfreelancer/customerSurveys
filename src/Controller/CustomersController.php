@@ -66,31 +66,7 @@ class CustomersController extends AppController
         ];
 
 
-
-        /**  @var App\Model\Entity\Customer **/
-       /*
-        $customer = $this->Customers->get($id, [
-            'contain' => ['CustomersTickets']
-        ]);
-*/
-
-        /**  @var Cake\ORM\ResultSet **/
-
-/*
-        $query  = $this->Customers->find()->contain(['CustomersTickets'])->where([
-            'id' => $id,
-        ]);
-*/
-/*
-        $query  = $this->Customers->find()->where([
-            'id' => $id,
-        ]);
-        $customers = $this->Paginator->paginate($query);
-        $customer = $customers->first();
-*/
         $customer  = $this->Customers->get($id);
-
-
 
         $this->loadModel('CustomersTickets');
 
@@ -103,24 +79,8 @@ class CustomersController extends AppController
         $customersTickets = $this->Paginator->paginate($query);
 
         $this->set('customersTickets',$customersTickets);
-
-
-        $this->loadModel('CustomersSurveys');
-
-        /**  @var Cake\ORM\ResultSet **/
-        $query  = $this->CustomersSurveys->find('all')->where([
-            'customers_id' => $id,
-        ])->contain([ 'CustomersSurveysAnswers' =>[ 'SurveysQuestions' ], 'Surveys']);
-
-        $customersSurveys = $this->Paginator->paginate($query);
-
-        $this->set('customersSurveys',$customersSurveys);
-
-
-
         $this->set('customer',$customer);
         $this->set('_serialize', ['customer']);
-
         $this->set('customersTicketsStatus',$customersTicketsStatus );
     }
 
@@ -189,5 +149,27 @@ class CustomersController extends AppController
             $this->Flash->error(__('The customer could not be deleted. Please, try again.'));
         }
         return $this->redirect(['action' => 'index']);
+    }
+    
+    public function surveys($id = null)
+    {
+        $this->loadModel('CustomersSurveys');
+        $this->loadModel('Surveys');
+
+        $customer  = $this->Customers->get($id);
+
+        /**  @var Cake\ORM\ResultSet **/
+        $query  = $this->CustomersSurveys->find('all')->where([
+            'customers_id' => $id,
+        ])->contain([ 'CustomersSurveysAnswers' =>[ 'SurveysQuestions' ], 'Surveys']);
+
+        $customersSurveys = $this->Paginator->paginate($query);
+
+        $this->set('customersSurveys',$customersSurveys);
+        $this->set('surveys',$this->Surveys->find('list')->toArray());
+        $this->set('customersId',$id);
+        $this->set('customer',$customer);
+
+        $this->render('customer_surveys');
     }
 }

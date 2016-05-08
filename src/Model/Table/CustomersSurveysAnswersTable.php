@@ -55,7 +55,9 @@ class CustomersSurveysAnswersTable extends Table
 
         $validator
             ->requirePresence('answer', 'create')
-            ->notEmpty('answer');
+            ->notEmpty('answer')
+            ->range('answer',[0,10],"must be between 0 and 10");
+
 
         return $validator;
     }

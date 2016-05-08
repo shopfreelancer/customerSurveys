@@ -28,4 +28,8 @@ $( document ).ready(function() {
 
         return window.location.replace(url);
     })
+    
+    $('#js_add_customers_survey_form').change(function(e){
+       $(this).submit();
+    });
 });

@@ -27,7 +27,7 @@ class SurveysSeed extends AbstractSeed
 
         for ($i = 0; $i < 5; $i++) {
             $data[] = [
-                'title'   => $faker->words(3,true),
+                'title'   => "Survey ".$i." ".$faker->words(3,true),
             ];
         }
 

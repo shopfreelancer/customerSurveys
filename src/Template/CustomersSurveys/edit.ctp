@@ -1,27 +1,28 @@
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Form->postLink(
-                __('Delete'),
-                ['action' => 'delete', $customersSurvey->id],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $customersSurvey->id)]
-            )
-        ?></li>
-        <li><?= $this->Html->link(__('List Customers Surveys'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Surveys'), ['controller' => 'Surveys', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Survey'), ['controller' => 'Surveys', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
 <div class="customersSurveys form large-9 medium-8 columns content">
+
     <?= $this->Form->create($customersSurvey) ?>
+    <?= $this->Form->input('action',['type'=>'hidden','value'=>'save']) ?>
+    <div class="col-xs-12 col-sm-6">
     <fieldset>
-        <legend><?= __('Edit Customers Survey') ?></legend>
+        <legend><?= $customersSurvey->Surveys->title ?></legend>
         <?php
-            echo $this->Form->input('answer');
-            echo $this->Form->input('survey_id', ['options' => $surveys]);
-            echo $this->Form->input('timestamp');
+        echo $this->Form->input('CustomersSurveys.timestamp',['type'=>'date']);
+        echo $this->Form->input('CustomersSurveys.customers_id',['type'=>'hidden']);
+        foreach($customersSurvey->CustomersSurveysAnswers as $key => $customersSurveysAnswer) {
+            echo '<div class="row">';
+            echo '<div class="col-xs-12 col-sm-6">';
+            echo $this->Form->hidden("CustomersSurveys.CustomersSurveysAnswers.{$key}.id");
+            echo $customersSurveysAnswer->SurveysQuestions->title;
+            echo '</div><div class="col-xs-12 col-sm-6">';
+            echo $this->Form->input("CustomersSurveys.CustomersSurveysAnswers.{$key}.answer",
+                ['type' => 'number', 'step' => "0.5", 'default' => 2,'label'=>false]);
+            echo '</div></div>';
+        }
         ?>
     </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
-    <?= $this->Form->end() ?>
+      <?= $this->Html->link(__('Cancel'), ['controller' => 'Customers', 'action' => 'surveys',$customersSurvey->customers_id],['class' => 'btn btn-default ']) ?>
+        <?= $this->Form->button(__('Submit'),['class' => 'btn btn-primary pull-right']) ?>
+        <?= $this->Form->end() ?>
+    </div>
+
 </div>

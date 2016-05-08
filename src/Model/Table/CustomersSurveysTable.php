@@ -41,6 +41,7 @@ class CustomersSurveysTable extends Table
         ]);
         $this->hasMany('CustomersSurveysAnswers', [
             'foreignKey' => 'customers_surveys_id',
+            'dependent' => true,
             'propertyName' => 'CustomersSurveysAnswers'
         ]);
     }
@@ -60,6 +61,7 @@ class CustomersSurveysTable extends Table
         $validator
             ->requirePresence('timestamp', 'create')
             ->notEmpty('timestamp');
+
 
         return $validator;
     }

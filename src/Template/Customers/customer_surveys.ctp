@@ -1,10 +1,11 @@
-<h2>Customer Surveys</h2>
+<?php $this->assign('title', "Customer Surveys for {$customer->companyname}"); ?>
+<?= $this->Html->link(__('Back to Customer'), ['action' => 'view', $customer->id],['class' => 'btn btn-primary']) ?>
 <div class="table-responsive">
     <table class="table table-striped">
         <thead>
         <tr>
             <th><?= $this->Paginator->sort('name') ?></th>
-            <th><?= $this->Paginator->sort('date') ?></th>
+            <th><?= $this->Paginator->sort('timestamp') ?></th>
             <th><?= $this->Paginator->sort('sum') ?></th>
             <th class="actions"><?= __('Actions') ?></th>
         </tr>
@@ -31,6 +32,26 @@
             <?= $this->Paginator->next(__('next') . ' >') ?>
         </ul>
         <p><?= $this->Paginator->counter() ?></p>
-        <p><?= $this->Paginator->counter('{{count}} tickets total found') ?></p>
+        <p><?= $this->Paginator->counter('{{count}} surveys found') ?></p>
     </div>
+</div>
+<div class="row">
+    <?= $this->Form->create(null, [
+        'url' => ['controller' => 'CustomersSurveys', 'action' => 'add'],
+        'id' => "js_add_customers_survey_form"
+    ]);
+    echo $this->Form->hidden('customers_id',['value'=>$customersId]);
+    ?>
+    <?= '<div class=" col-xs-12 col-sm-8">'.$this->Form->label('surveys', 'Create new Survey for this customer:').'</div>' ?>
+    <div id="new survey" class="col-xs-12 col-sm-4">
+        <?php echo $this->Form->select(
+            'surveys_id',
+            $surveys, [
+                'empty' => 'show all',
+                'class'=> "form-control"
+            ]
+        );
+        ?>
+    </div>
+    <?= $this->Form->end() ?>
 </div>
