@@ -34,7 +34,7 @@ class SurveysController extends AppController
     public function view($id = null)
     {
         $survey = $this->Surveys->get($id, [
-            'contain' => ['Surveys']
+            'contain' => ['SurveysQuestions']
         ]);
 
         $this->set('survey', $survey);

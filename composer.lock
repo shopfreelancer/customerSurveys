@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "f5133dbf0dea95d30bafec04584df022",
-    "content-hash": "ac29e9cd771594fefd3cba9d6a212d1d",
+    "hash": "2972f2c8b214e0a8eae2f291fff37fb6",
+    "content-hash": "7f9a65af57292f8d3c26a04f12c62ce2",
     "packages": [
         {
             "name": "aura/installer-default",
@@ -342,6 +342,42 @@
             ],
             "description": "A composer installer for CakePHP 3.0+ plugins.",
             "time": "2016-04-28 03:01:34"
+        },
+        {
+            "name": "commercial-hippie/chocolate",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/commercial-hippie/chocolate.git",
+                "reference": "0ffa902633a2710028e7acc59f4016d7e302c9d7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/commercial-hippie/chocolate/zipball/0ffa902633a2710028e7acc59f4016d7e302c9d7",
+                "reference": "0ffa902633a2710028e7acc59f4016d7e302c9d7",
+                "shasum": ""
+            },
+            "require": {
+                "cakephp/plugin-installer": "*"
+            },
+            "require-dev": {
+                "cakephp/cakephp": "3.0.x-dev"
+            },
+            "type": "cakephp-plugin",
+            "extra": {
+                "installer-name": "Chocolate"
+            },
+            "autoload": {
+                "psr-4": {
+                    "Chocolate\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Front-End Framework FormHelpers for CakePHP 3.0",
+            "time": "2015-09-23 08:55:07"
         },
         {
             "name": "fzaninotto/faker",
@@ -1278,6 +1314,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
+        "commercial-hippie/chocolate": 20,
         "psy/psysh": 0
     },
     "prefer-stable": true,

@@ -25,6 +25,7 @@
             echo $this->Form->input('description');
         ?>
     </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
+    <?= $this->Html->link(__('Cancel'), ['controller' => 'Customers', 'action' => 'view',$customer->id],['class' => 'btn btn-default ']) ?>
+    <?= $this->Form->button(__('Submit'),['class' => 'btn btn-primary pull-right']) ?>
     <?= $this->Form->end() ?>
 </div>

@@ -64,7 +64,7 @@ class CustomersTable extends Table
 
         $validator
             ->requirePresence('salutation', 'create')
-            ->notEmpty('salutation');
+            ->allowEmpty('salutation');
 
         $validator
             ->requirePresence('companyname', 'create')
@@ -87,8 +87,8 @@ class CustomersTable extends Table
             ->notEmpty('phone');
 
         $validator
-            ->requirePresence('www', 'create')
-            ->notEmpty('www');
+            ->requirePresence('www', 'create');
+
 
         $validator
             ->email('email')
@@ -97,15 +97,16 @@ class CustomersTable extends Table
 
         $validator
             ->requirePresence('ustid', 'create')
-            ->notEmpty('ustid');
+            ->allowEmpty('ustid');
+
 
         $validator
             ->requirePresence('taxnumber', 'create')
-            ->notEmpty('taxnumber');
+            ->allowEmpty('taxnumber');
 
         $validator
             ->requirePresence('description', 'create')
-            ->notEmpty('description');
+            ->allowEmpty('description');
 
         return $validator;
     }

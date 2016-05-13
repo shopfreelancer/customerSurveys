@@ -1,12 +1,12 @@
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
+    <ul class="nav sidebar-menu">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('New Customers Survey'), ['action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Surveys'), ['controller' => 'Surveys', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Survey'), ['controller' => 'Surveys', 'action' => 'add']) ?></li>
     </ul>
 </nav>
-<div class="customersSurveys index large-9 medium-8 columns content">
+<div class="customersSurveys content">
     <h3><?= __('Customers Surveys') ?></h3>
     <table cellpadding="0" cellspacing="0">
         <thead>
