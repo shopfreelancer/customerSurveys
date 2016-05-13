@@ -10,8 +10,7 @@
     </ul>
 </nav>
 <div class="customers view large-9 medium-8 columns content">
-    <h3><?= h($customer->id) ?></h3>
-    <table class="vertical-table">
+    <table class="table table-striped">
         <tr>
             <th><?= __('Firstname') ?></th>
             <td><?= h($customer->firstname) ?></td>
@@ -41,8 +40,8 @@
             <td><?= h($customer->city) ?></td>
         </tr>
         <tr>
-            <th><?= __('Country Id') ?></th>
-            <td><?= h($customer->country_id) ?></td>
+            <th><?= __('Country') ?></th>
+            <td><?= h($customer->countryName) ?></td>
         </tr>
         <tr>
             <th><?= __('Phone') ?></th>

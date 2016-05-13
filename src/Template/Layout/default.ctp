@@ -1,19 +1,5 @@
 <?php
-/**
- * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
- *
- * Licensed under The MIT License
- * For full copyright and license information, please see the LICENSE.txt
- * Redistributions of files must retain the above copyright notice.
- *
- * @copyright     Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
- * @link          http://cakephp.org CakePHP(tm) Project
- * @since         0.10.0
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
- */
-
-$cakeDescription = 'CakePHP: the rapid development php framework';
+$cakeDescription = 'Surveylicious - Surveys never made so easy';
 ?>
 <!DOCTYPE html>
 <html>
@@ -38,24 +24,25 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 
 </head>
 <body>
-<div class="container">
+<div class="outer_wrap container">
 
     <div class="header clearfix">
         <nav>
             <ul class="nav nav-pills pull-right">
                 <li class="active" role="presentation"><a href="#">Home</a></li>
                 <li role="presentation"><?= $this->Html->link(__('Customers'), ['controller'=>'Customers' ,'action' => 'index']) ?></li>
+                 <li role="presentation"><?= $this->Html->link(__('Surveys'), ['controller'=>'Surveys' ,'action' => 'index']) ?></li>
             </ul>
         </nav>
-        <h3 class="text-muted">Testapp</h3>
+        <h3 class="text-muted">Surveylicos</h3>
     </div>
-    <div class="container">
+    <div class="headline">
         <h1><?= $this->fetch('title') ?></h1>
     </div>
 
 
     <?= $this->Flash->render() ?>
-    <div class="container clearfix">
+    <div class="main_part clearfix">
         <?= $this->fetch('content') ?>
     </div>
     <footer>
@@ -63,7 +50,6 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-<?= $this->Html->script('timepicker-min.js') ?>
 <?= $this->fetch('scriptBottom') ?>
 <?= $this->Html->script('main.js'); ?>
 

@@ -77,6 +77,7 @@ class CustomersSurveysTable extends Table
     {
         $rules->add($rules->existsIn(['surveys_id'], 'Surveys'));
         $rules->add($rules->existsIn(['customers_id'], 'Customers'));
+        $rules->add($rules->isUnique(['timestamp', 'surveys_id']));
         return $rules;
     }
 }

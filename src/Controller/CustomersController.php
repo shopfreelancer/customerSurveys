@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\ORM\TableRegistry;
 
 /**
  * Customers Controller
@@ -15,6 +16,7 @@ class CustomersController extends AppController
     {
         parent::initialize();
         $this->loadComponent('Paginator');
+        $this->loadComponent('AggregateSurveys');
     }
 
     /**
@@ -156,19 +158,33 @@ class CustomersController extends AppController
         $this->loadModel('CustomersSurveys');
         $this->loadModel('Surveys');
 
+
+
         $customer  = $this->Customers->get($id);
 
         /**  @var Cake\ORM\ResultSet **/
         $query  = $this->CustomersSurveys->find('all')->where([
             'customers_id' => $id,
-        ])->contain([ 'CustomersSurveysAnswers' =>[ 'SurveysQuestions' ], 'Surveys']);
+        ])->contain([ 'CustomersSurveysAnswers' =>[ 'SurveysQuestions' ], 'Surveys'])
+            ->order(['title'=> 'ASC','timestamp' => 'ASC']);
+
 
         $customersSurveys = $this->Paginator->paginate($query);
+
+        // get CustomersTitle grouped by surveys_id
+        $groupedCustomersSurveys = [];
+        foreach($customersSurveys as $customersSurvey){
+
+            $groupedCustomersSurveys[$customersSurvey->surveys_id][] = $customersSurvey;
+        }
+        $timeline = $this->AggregateSurveys->getTimeline($groupedCustomersSurveys);
 
         $this->set('customersSurveys',$customersSurveys);
         $this->set('surveys',$this->Surveys->find('list')->toArray());
         $this->set('customersId',$id);
         $this->set('customer',$customer);
+        $this->set('timeline', $timeline);
+        $this->set('allSurveysAvg', $this->AggregateSurveys->getAllSurveysAvg());
 
         $this->render('customer_surveys');
     }

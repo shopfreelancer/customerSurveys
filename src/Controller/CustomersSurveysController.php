@@ -59,7 +59,11 @@ class CustomersSurveysController extends AppController
         $this->loadModel('CustomersSurveysAnswers');
 
         if ($this->request->is('get')){
+            if($this->request['data']['customers_id']){
+                return $this->redirect(['controller'=>'Customers','action' => 'surveys',$this->request['data']['customers_id']]);
+            }
             return $this->redirect(['controller'=>'Customers','action' => 'index']);
+
         }
 
         // init call of method. we need to built nested object first
@@ -93,7 +97,7 @@ class CustomersSurveysController extends AppController
             $customersSurvey = $this->CustomersSurveys->patchEntity($customersSurvey, $this->request->data);
                 if ($this->CustomersSurveys->save($customersSurvey)) {
                     $this->Flash->success(__('The customers survey has been saved.'));
-                    return $this->redirect(['controller'=>'Customers','action' => 'view',$customersId]);
+                    return $this->redirect(['controller'=>'Customers','action' => 'surveys',$customersId]);
                 } else {
                     $this->Flash->error(__('The customers survey could not be saved. Please, try again.'));
                 }
@@ -153,4 +157,6 @@ class CustomersSurveysController extends AppController
         }
         return $this->redirect(['action' => 'index']);
     }
+
+
 }

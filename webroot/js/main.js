@@ -32,4 +32,8 @@ $( document ).ready(function() {
     $('#js_add_customers_survey_form').change(function(e){
        $(this).submit();
     });
+
+
 });
+
+

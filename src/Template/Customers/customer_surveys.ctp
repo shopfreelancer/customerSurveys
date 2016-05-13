@@ -1,5 +1,23 @@
 <?php $this->assign('title', "Customer Surveys for {$customer->companyname}"); ?>
 <?= $this->Html->link(__('Back to Customer'), ['action' => 'view', $customer->id],['class' => 'btn btn-primary']) ?>
+
+<div id="customerChartCanvasWrap">
+    <canvas id="customerChartCanvas"></canvas>
+</div>
+<?php
+echo '<div id="allSurveyAvgData" style="display:none;">';
+foreach($allSurveysAvg as $surveysAvg ){
+echo '<span class="all_survey" data-timestamp="'.$surveysAvg['timestamp'].'" data-sum="'.$surveysAvg['sum'].'">'.$surveysAvg['sum'].'</span>';
+}
+echo '</div>';
+?>
+<?php foreach ($timeline as $customerSurveys): ?>
+<?= '<div class="custom_survey_wrap" data-title="'.$customerSurveys['title'].'" style="display:none;">' ?>
+<?php foreach ($customerSurveys as $customerSurvey): ?>
+<?= '<span class="custom_survey" data-timestamp="'.$customerSurvey['timestamp'].'" data-sum="'.$customerSurvey['sum'].'"></span>';?>
+<?php endforeach; ?>
+<?= '</div>' ?>
+<?php endforeach; ?>
 <div class="table-responsive">
     <table class="table table-striped">
         <thead>
@@ -15,7 +33,7 @@
             <tr>
                 <td><?= $customersSurvey->Surveys->title ?></td>
                 <td><?= $customersSurvey->timestamp ?></td>
-                <td><?= $customersSurvey->surveySum;?></td>
+                <td><?= $customersSurvey->surveySum ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['controller'=> 'CustomersSurveys','action' => 'view', $customersSurvey->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['controller'=> 'CustomersSurveys','action' => 'edit', $customersSurvey->id]) ?>
@@ -55,3 +73,7 @@
     </div>
     <?= $this->Form->end() ?>
 </div>
+<?php $this->Html->script('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.2/Chart.bundle.min.js', ['block' => 'scriptBottom']); ?>
+<?php $this->Html->script('customerCharts', ['block' => 'scriptBottom']); ?>
+
+

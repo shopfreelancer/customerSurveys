@@ -56,7 +56,7 @@ class Customer extends Entity
 
     public function getCountriesListData()
     {
-        return ["Deutschland","Österreich","Schweiz"];
+        return [1=>"Deutschland",2=>"Österreich",3=>"Schweiz"];
     }
 
 
