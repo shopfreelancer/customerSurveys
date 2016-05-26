@@ -1,11 +1,15 @@
 <?php
-    $this->assign('title','Edit Customer<small>'. $customer->companyname .'</small>');
+    $this->assign('title','Edit Customer');
 
     $this->start('sidebar');
+echo '<li>'. $this->Html->link('<i class="fa fa-files-o"></i>'. __('List Customers'), ['controller' => 'Customers','action' => 'index'],['escape'=>false]) .'</li>';
+echo '<li>'. $this->Html->link('<i class="fa fa-dashboard"></i>'. __('Customers Details'), ['controller' => 'Customers','action' => 'view',$customer->id],['escape'=>false]) .'</li>';
+
         echo '<li>'.$this->Form->postLink(
+                '<i class="fa fa-remove"></i>'.
                         __('Delete Customer'),
                         ['action' => 'delete', $customer->id],
-                        ['confirm' => __('Are you sure you want to delete # {0}?', $customer->id)]
+                        ['confirm' => __('Are you sure you want to delete # {0}?', $customer->id),'escape'=>false]
                     ).'</li>';
 
     $this->end();

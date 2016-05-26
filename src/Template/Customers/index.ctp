@@ -3,9 +3,7 @@
 
     $this->start('sidebar');
         echo '<li>'.$this->Html->link(
-        $this->Html->tag('i','', ['class'=>' glyphicon glyphicon-plus','escape'=>false]).
-        $this->Html->tag('span',__('Create new Customer'))
-        , ['action' => 'add'],['title'=>__('New Customer'),'escape'=>false]).'</li>';
+                '<i class="fa fa-plus-circle"></i>'. __('Create new Customer'), ['action' => 'add'],['title'=>__('New Customer'),'escape'=>false]).'</li>';
     $this->end();
 ?>
 

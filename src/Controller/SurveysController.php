@@ -25,23 +25,6 @@ class SurveysController extends AppController
     }
 
     /**
-     * View method
-     *
-     * @param string|null $id Survey id.
-     * @return \Cake\Network\Response|null
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function view($id = null)
-    {
-        $survey = $this->Surveys->get($id, [
-            'contain' => ['SurveysQuestions']
-        ]);
-
-        $this->set('survey', $survey);
-        $this->set('_serialize', ['survey']);
-    }
-
-    /**
      * Add method
      *
      * @return \Cake\Network\Response|void Redirects on successful add, renders view otherwise.
@@ -72,10 +55,17 @@ class SurveysController extends AppController
     public function edit($id = null)
     {
         $survey = $this->Surveys->get($id, [
-            'contain' => []
+            'contain' => ['SurveysQuestions'=>
+                [
+                    'sort' => ['SurveysQuestions.position' => 'ASC']
+                ]]
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $survey = $this->Surveys->patchEntity($survey, $this->request->data);
+            $survey = $this->Surveys->patchEntity($survey, $this->request->data , [
+                'associated' => ['SurveysQuestions'
+            ]
+            ]);
+
             if ($this->Surveys->save($survey)) {
                 $this->Flash->success(__('The survey has been saved.'));
                 return $this->redirect(['action' => 'index']);

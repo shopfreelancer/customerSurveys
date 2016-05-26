@@ -19,10 +19,7 @@ class CreateSurveysQuestions extends AbstractMigration
             'limit' => 255,
             'null' => false,
         ]);
-        $table->addColumn('weighting', 'float', [
-            'default' => null,
-            'null' => false,
-        ]);
+
         $table->addColumn('position', 'integer', [
             'default' => null,
             'null' => false,

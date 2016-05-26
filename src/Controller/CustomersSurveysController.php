@@ -82,14 +82,16 @@ class CustomersSurveysController extends AppController
         $data = [];
 
         foreach($survey->SurveysQuestions as $surveysQuestion){
+
             $data['CustomersSurveys']['CustomersSurveysAnswers'][] = ['surveys_questions_id' => $surveysQuestion->id];
         }
 
         $customersSurvey = $this->CustomersSurveys->newEntities($data, [
             'associated' => ['CustomersSurveysAnswers' =>
-                ['fieldList' => 'surveys_questions_id', 'validate' => false]
+                ['fieldList' => 'surveys_questions_id', 'validate' => false,]
             ]]);
 
+        // we need one main object with nested children, method return array of objects
         $customersSurvey = $customersSurvey[0];
 
 
@@ -118,7 +120,7 @@ class CustomersSurveysController extends AppController
     public function edit($id = null)
     {
         $customersSurvey = $this->CustomersSurveys->get($id, [
-            'contain' => [ 'CustomersSurveysAnswers' =>[ 'SurveysQuestions' ], 'Surveys']
+            'contain' => [ 'CustomersSurveysAnswers' => [ 'SurveysQuestions' ], 'Surveys']
         ]);
 
         if ($this->request->is(['patch', 'post', 'put'])) {

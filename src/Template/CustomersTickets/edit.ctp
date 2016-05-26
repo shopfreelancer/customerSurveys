@@ -1,15 +1,16 @@
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Form->postLink(
-                __('Delete'),
-                ['action' => 'delete', $customersTicket->id],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $customersTicket->id)]
-            )
-        ?></li>
-        <li><?= $this->Html->link(__('List Customers Tickets'), ['action' => 'index']) ?></li>
-    </ul>
-</nav>
+<?php
+$this->start('sidebar');
+echo '<li>'. $this->Html->link('<i class="fa fa-dashboard"></i>'. __('Customers Details'), ['controller' => 'Customers','action' => 'view',$customersTicket->customers_id],['escape'=>false]) .'</li>';
+echo '<li>'. $this->Form->postLink(
+        '<i class="fa fa-remove"></i>'.
+    __('Delete Ticket'),
+    ['action' => 'delete', $customersTicket->id],
+    ['confirm' => __('Are you sure you want to delete # {0}?', $customersTicket->id),'escape'=>false]
+    ) .'</li>';
+echo '<li>'. $this->Html->link('<i class="fa fa-plus-circle"></i>'.__('New Ticket'), ['controller' => 'CustomersTickets', 'action' => 'add',$customersTicket->customers_id],['escape'=>false])  .'</li>';
+$this->end();
+?>
+
 <div class="customersTickets form-horizontal">
     <?= $this->Form->create($customersTicket) ?>
     <fieldset>

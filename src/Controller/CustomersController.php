@@ -12,12 +12,6 @@ use Cake\ORM\TableRegistry;
 class CustomersController extends AppController
 {
 
-    public $helpers = [
-        'Form' => [
-            'className' => 'Chocolate.BootstrapForm'
-        ]
-    ];
-
     public function initialize()
     {
         parent::initialize();

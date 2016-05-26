@@ -1,4 +1,12 @@
-<div class="customersSurveys form large-9 medium-8 columns content">
+<?php
+
+$this->start('sidebar');
+echo '<li>'. $this->Html->link('<i class="fa fa-pencil"></i>'. __('Edit Customer'), ['controller' => 'Customers','action' => 'edit', $customersSurvey->customers_id
+],['escape'=>false]) .'</li>';
+echo '<li>'. $this->Html->link('<i class="fa fa-file-o"></i>'.__('List CustomerSurveys'), ['controller' => 'Customers','action' => 'surveys', $customersSurvey->customers_id],['escape'=>false]) . '</li>';
+$this->end();
+?>
+<div class="customersSurveys row">
 
     <?= $this->Form->create($customersSurvey) ?>
     <?= $this->Form->input('action',['type'=>'hidden','value'=>'save']) ?>

@@ -1,14 +1,21 @@
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Edit Customer'), ['action' => 'edit', $customer->id]) ?> </li>
-        <li><?= $this->Form->postLink(__('Delete Customer'), ['action' => 'delete', $customer->id], ['confirm' => __('Are you sure you want to delete # {0}?', $customer->id)]) ?> </li>
-        <li><?= $this->Html->link(__('List Customers'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Customer'), ['action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List CustomerSurveys'), ['action' => 'surveys', $customer->id]) ?> </li>
 
-    </ul>
-</nav>
+<?php
+$this->start('sidebar');
+echo '<li>'. $this->Html->link('<i class="fa fa-files-o"></i>'. __('List Customers'), ['controller' => 'Customers','action' => 'index'],['escape'=>false]) .'</li>';
+echo '<li>'. $this->Html->link('<i class="fa fa-pencil"></i>'. __('Edit Customer'), ['controller' => 'Customers','action' => 'edit',$customer->id],['escape'=>false]) .'</li>';
+
+echo '<li>'. $this->Form->postLink(
+        '<i class="fa fa-remove"></i>'.
+        __('Delete Customer'),
+        ['action' => 'delete', $customer->id],
+        ['confirm' => __('Are you sure you want to delete # {0}?', $customer->id),'escape'=>false]
+    ) .'</li>';
+echo '<li>'. $this->Html->link('<i class="fa fa-plus-circle"></i>'.__('New Ticket'), ['controller' => 'CustomersTickets', 'action' => 'add',$customer->id],['escape'=>false])  .'</li>';
+echo '<li>'. $this->Html->link('<i class="fa fa-file-o"></i>'.__('List CustomerSurveys'), ['action' => 'surveys', $customer->id],['escape'=>false]) . '</li>';
+
+$this->end();
+?>
+
 <div class="customers view large-9 medium-8 columns content">
     <table class="table table-striped">
         <tr>
